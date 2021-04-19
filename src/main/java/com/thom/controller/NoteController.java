@@ -44,7 +44,7 @@ public class NoteController {
 	}
 
 	@DeleteMapping("delete-note/{id}")
-	public void deleteNote(@RequestParam Long id) {
+	public void deleteNote(@PathVariable Long id) {
 		noteService.deleteNote(id);
 	}
 
