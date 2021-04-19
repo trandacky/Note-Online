@@ -1,0 +1,81 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Note online QNU</title>
+<meta charset="utf-8">
+<!-- <head th:replace="layout :: head"></head> -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<body>
+	<nav th:replace="layout :: header"></nav>
+	<div class="text-center">
+		<div class="card">
+			<div class="card-body">
+				<form method="get" action="/seach">
+					<input class="card-body col-md-6" name="password" id="password"
+						placeholder="Nhập pass của bạn đi">
+					<button class="card-body btn-primary" onclick="retrieveGuests()">Tìm</button>
+				</form>
+
+
+				<th:block th:if="${#lists.isEmpty(listNote)}">
+					<h1 th:text="${note}"></h1>
+				</th:block>
+				<th:block th:unless="${#lists.isEmpty(listNote)}">
+					<div class="row">
+						<div>
+							Tên tài khoản: <label th:text="${account.name}"></label> Sinh
+							nhật: <label
+								th:text="${#dates.format(account.birthDay,'dd-MM-yyyy')}"></label>
+						</div>
+						<table class="table table-bordered table-hover">
+							<thead class="text-center">
+								<tr>
+									<th>STT</th>
+									<th>Nội dung</th>
+									<th>Thời gian tạo</th>
+									<th>Thời gian cập nhật</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="noter,iterStat : ${listNote}">
+									<input type="hidden" th:value="${noter.note}"
+										th:id="${iterStat.count}">
+									<td style="width: 10%" class="text-center"
+										th:text="${iterStat.count}"></td>
+									<td
+										style="width: 100%; display: flex; width: 100%; justify-content: space-between;"><label
+										th:text="${noter.note}"></label><img style="max-width: 3%;"
+										src="/image/coppy.jpg"
+										th:onclick="myFunction([[${iterStat.count}]])"></td>
+									<td class="text-center"
+										th:text="${#dates.format(noter.createDate,'dd-MM-yyyy HH:mm:ss')}"></td>
+									<td class="text-center"
+										th:text="${#dates.format(noter.updateDate,'dd-MM-yyyy HH:mm:ss')}"></td>
+
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+			</div>
+			</th:block>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function myFunction(a) {
+			/*  /* Get the text field */
+			var copyText = document.getElementById(a).value;
+			let textarea = document.createElement('textarea');
+			textarea.setAttribute('id', 'textarea');
+			textarea.textContent = copyText;
+			document.body.appendChild(textarea);
+			textarea.select();
+			document.execCommand('copy');
+			document.getElementById("textarea").remove();
+		}
+	</script>
+</body>
+</html>
+
+<footer th:replace="layout :: footer"></footer>
+
