@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,5 +91,11 @@ public class AccountImpl implements AccountService {
 			return accountRepository.save(account);
 		}
 		return new Account();
+	}
+
+	@Override
+	public List<Account> getAll() {
+		
+		return accountRepository.findAll();
 	}
 }

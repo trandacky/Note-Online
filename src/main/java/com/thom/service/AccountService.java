@@ -1,5 +1,6 @@
 package com.thom.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.thom.entity.Account;
@@ -20,5 +21,7 @@ public interface AccountService {
 	Account createDefaultAccount();
 
 	Account changePassword(PasswordDTO passwordDTO);
+
+	List<Account> getAll();
 
 }

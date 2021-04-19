@@ -19,4 +19,6 @@ public interface NoteService {
 
 	Note test();
 
+	List<Note> getAll();
+
 }

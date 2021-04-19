@@ -28,6 +28,10 @@ public class NoteController {
 	public List<Note> getAllNote(@PathVariable Long id) {
 		return noteService.getAllNote(id);
 	}
+	@GetMapping("get-all/")
+	public List<Note> getAll() {
+		return noteService.getAll();
+	}
 
 	@GetMapping("get-note/{id}")
 	public Note getNote(@PathVariable Long id) {

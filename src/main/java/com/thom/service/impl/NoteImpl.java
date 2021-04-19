@@ -54,7 +54,6 @@ public class NoteImpl implements NoteService{
 
 	@Override
 	public List<Note> getAllNote(Long id) {
-		// TODO Auto-generated method stub
 		return accountRepository.findById(id).get().getNotes();
 	}
 
@@ -62,6 +61,11 @@ public class NoteImpl implements NoteService{
 	public Note test() {
 		Note note = new Note();
 		return noteRepository.save(note);
+	}
+
+	@Override
+	public List<Note> getAll() {
+		return noteRepository.findAll();
 	}
 	
 }

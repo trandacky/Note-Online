@@ -1,5 +1,6 @@
 package com.thom.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,10 @@ public class AccountController {
 	public Account createDefaultAccount()
 	{
 		return accountService.createDefaultAccount();
+	}
+	@GetMapping("/get-all-account")
+	public List<Account> getAll()
+	{
+		return accountService.getAll();
 	}
 }
