@@ -26,7 +26,7 @@ public class NoteImpl implements NoteService{
 		Optional<Note> noteOptional=noteRepository.findById(noteDTO.getNoteId());
 		if(noteOptional.isPresent())
 		{
-			Note note= new Note();
+			Note note= noteOptional.get();
 			note.setNote(noteDTO.getNote());
 			note.setUpdateDate(ZonedDateTime.now().toInstant());
 			return noteRepository.save(note);
