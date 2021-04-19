@@ -1,6 +1,7 @@
 package com.thom.entity;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +33,13 @@ public class Account {
 	private String name;
 
 	@Column
-	private Instant birthDay = Instant.now();
+	private Instant birthDay = ZonedDateTime.now().toInstant();
 
 	@Column
-	private Instant createDate = Instant.now();
+	private Instant createDate = ZonedDateTime.now().toInstant();
 
 	@Column
-	private Instant updateDate = Instant.now();
+	private Instant updateDate = ZonedDateTime.now().toInstant();
 
 	@OneToMany(mappedBy = "account")
 	@JsonIgnore

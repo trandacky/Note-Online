@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.thom.entity.Account;
 import com.thom.service.dto.AccountDTO;
 import com.thom.service.dto.AccountDTOUpdate;
+import com.thom.service.dto.PasswordDTO;
 
 public interface AccountService {
 
@@ -17,5 +18,7 @@ public interface AccountService {
 	Account createAccount(AccountDTO account);
 
 	Account createDefaultAccount();
+
+	Account changePassword(PasswordDTO passwordDTO);
 
 }

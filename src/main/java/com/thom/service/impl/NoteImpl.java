@@ -1,6 +1,7 @@
 package com.thom.service.impl;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import com.thom.repository.AccountRepository;
 import com.thom.repository.NoteRepository;
 import com.thom.service.NoteDTO;
 import com.thom.service.NoteService;
+import com.thom.service.dto.NoteUpdateDTO;
 @Service
 public class NoteImpl implements NoteService{
 	@Autowired
@@ -20,13 +22,13 @@ public class NoteImpl implements NoteService{
 	private AccountRepository accountRepository;
 
 	@Override
-	public Note updateNote(Note note) {
-		Optional<Note> noteOptional=noteRepository.findById(note.getId());
+	public Note updateNote(NoteUpdateDTO noteDTO) {
+		Optional<Note> noteOptional=noteRepository.findById(noteDTO.getNoteId());
 		if(noteOptional.isPresent())
 		{
-			note.setId(noteOptional.get().getId());
-			note.setAccount(noteOptional.get().getAccount());
-			note.setUpdateDate(Instant.now());
+			Note note= new Note();
+			note.setNote(noteDTO.getNote());
+			note.setUpdateDate(ZonedDateTime.now().toInstant());
 			return noteRepository.save(note);
 		}
 		return null;

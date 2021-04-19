@@ -3,10 +3,11 @@ package com.thom.service;
 import java.util.List;
 
 import com.thom.entity.Note;
+import com.thom.service.dto.NoteUpdateDTO;
 
 public interface NoteService {
 
-	Note updateNote(Note note);
+	Note updateNote(NoteUpdateDTO note);
 
 	void deleteNote(Long id);
 

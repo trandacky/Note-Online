@@ -1,6 +1,7 @@
 package com.thom.entity;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,26 +12,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "note")
 public class Note {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="note_id")
+	@Column(name = "note_id")
 	private Long id;
-	
+
 	@Column
 	private String note;
-	
+
 	@Column
-	private Instant createDate=Instant.now();
-	
+	private Instant createDate = ZonedDateTime.now().toInstant();
+
 	@Column
-	private Instant updateDate=Instant.now();
-	
+	private Instant updateDate = ZonedDateTime.now().toInstant();
+
 	@ManyToOne
-	@JoinColumn(name="account_id")
+	@JoinColumn(name = "account_id")
 	private Account account;
 
 	public Account getAccount() {
@@ -40,7 +40,7 @@ public class Note {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -73,7 +73,4 @@ public class Note {
 		this.updateDate = updateDate;
 	}
 
-	
-	
-	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.thom.entity.Note;
 import com.thom.service.NoteDTO;
 import com.thom.service.NoteService;
+import com.thom.service.dto.NoteUpdateDTO;
 
 @RestController
 @RequestMapping(value="/api/note")
@@ -44,7 +45,7 @@ public class NoteController {
 	}
 
 	@PutMapping("update-note")
-	public Note updateNote(@RequestBody Note note) {
+	public Note updateNote(@RequestBody NoteUpdateDTO note) {
 		return noteService.updateNote(note);
 	}
 	@GetMapping("/test")

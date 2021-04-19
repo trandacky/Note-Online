@@ -8,19 +8,14 @@ public class AccountDTO {
 
 	private String name;
 
-	private Instant birthDay;
+	private String birthDay;
 
 	
 	public AccountDTO() {
 		super();
 	}
 
-	public AccountDTO(String password, String name, Instant birthDay) {
-		super();
-		this.password = password;
-		this.name = name;
-		this.birthDay = birthDay;
-	}
+	
 
 	public String getPassword() {
 		return password;
@@ -38,13 +33,19 @@ public class AccountDTO {
 		this.name = name;
 	}
 
-	public Instant getBirthDay() {
+
+
+	public String getBirthDay() {
 		return birthDay;
 	}
 
-	public void setBirthDay(Instant birthDay) {
+
+
+	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
 	}
+
+	
 	
 	
 }
