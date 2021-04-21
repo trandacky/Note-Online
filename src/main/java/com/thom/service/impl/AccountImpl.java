@@ -3,6 +3,7 @@ package com.thom.service.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
@@ -45,8 +46,13 @@ public class AccountImpl implements AccountService {
 		Optional<Account> accountOptional = accountRepository.findById(accountdto.getId());
 		if (accountOptional.isPresent()) {
 			account = accountOptional.get();
-			account.setUpdateDate(ZonedDateTime.now().toInstant());
-			account.setBirthDay(accountdto.getBirthDay());
+			account.setUpdateDate(ZonedDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")).toInstant());
+			try {
+				Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(accountdto.getBirthDay());
+				account.setBirthDay(date1.toInstant());
+			} catch (ParseException e) {
+				return new Account();
+			}
 			account.setName(accountdto.getName());
 
 		} else
@@ -87,7 +93,7 @@ public class AccountImpl implements AccountService {
 		{
 			Account account= optional.get();
 			account.setPassword(passwordDTO.getPassword());
-			account.setUpdateDate(ZonedDateTime.now().toInstant());
+			account.setUpdateDate(ZonedDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")).toInstant());
 			return accountRepository.save(account);
 		}
 		return new Account();

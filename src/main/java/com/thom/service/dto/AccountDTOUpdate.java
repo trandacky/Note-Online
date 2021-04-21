@@ -8,7 +8,7 @@ public class AccountDTOUpdate {
 
 	private String name;
 
-	private Instant birthDay;
+	private String birthDay;
 
 	
 	public AccountDTOUpdate() {
@@ -17,12 +17,18 @@ public class AccountDTOUpdate {
 
 	
 
-	public AccountDTOUpdate(Long id, String name, Instant birthDay) {
-		super();
-		this.id = id;
-		this.name = name;
+
+	public String getBirthDay() {
+		return birthDay;
+	}
+
+
+
+
+	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
 	}
+
 
 
 
@@ -34,14 +40,7 @@ public class AccountDTOUpdate {
 		this.name = name;
 	}
 
-	public Instant getBirthDay() {
-		return birthDay;
-	}
-
-	public void setBirthDay(Instant birthDay) {
-		this.birthDay = birthDay;
-	}
-
+	
 	public Long getId() {
 		return id;
 	}

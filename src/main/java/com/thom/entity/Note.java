@@ -1,6 +1,7 @@
 package com.thom.entity;
 
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
@@ -24,10 +25,10 @@ public class Note {
 	private String note;
 
 	@Column
-	private Instant createDate = ZonedDateTime.now().toInstant();
+	private Instant createDate = ZonedDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")).toInstant();
 
 	@Column
-	private Instant updateDate = ZonedDateTime.now().toInstant();
+	private Instant updateDate = ZonedDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")).toInstant();
 
 	@ManyToOne
 	@JoinColumn(name = "account_id")

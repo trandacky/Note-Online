@@ -1,9 +1,12 @@
 package com.thom.service.impl;
 
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +31,7 @@ public class NoteImpl implements NoteService{
 		{
 			Note note= noteOptional.get();
 			note.setNote(noteDTO.getNote());
-			note.setUpdateDate(ZonedDateTime.now().toInstant());
+			note.setUpdateDate(ZonedDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")).toInstant());
 			return noteRepository.save(note);
 		}
 		return null;
@@ -54,7 +57,8 @@ public class NoteImpl implements NoteService{
 
 	@Override
 	public List<Note> getAllNote(Long id) {
-		return accountRepository.findById(id).get().getNotes();
+		List<Note> notes=accountRepository.findById(id).get().getNotes();
+		return notes.stream().sorted(Comparator.comparing(Note::getUpdateDate).reversed()).collect(Collectors.toList());
 	}
 
 	@Override
